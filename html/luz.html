@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traffic Fest – Proyecto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+
+
+     <!-- Menú desplegable lateral derecho -->
+  <a href="#menu" class="menu-btn">☰ Menú</a>
+  
+  <nav id="menu">
+    <div id="menu-overlay"></div>
+  <ul class="links">
+  <li><a href="../index.html#home">Home</a></li>
+<li><a href="../index.html#mas-proyectos">Portfolio</a></li>
+<li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+  <li><a href="../index.html#redes-sociales">Redes</a></li>
+</ul>
+  </nav>
+  <!-- Encabezado -->
+  <header>
+    <h1>Traffic Fest</h1>
+    <p>Un ritual lumínico donde el pulso de la música despierta a la ciudad dormida.</p>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="container">
+
+   <!-- Contenido principal -->
+<div class="container">
+  <div id="ultimos-proyectos" class="video-box">
+    <iframe
+      class="video-preview"
+      src="https://www.youtube.com/embed/B8YGgfuSZAA?autoplay=1&mute=1&loop=1&playlist=B8YGgfuSZAA"
+      title="Traffic Fest - YouTube"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+
+    <!-- Descripción del proyecto -->
+    <section class="project-description">
+      <h2>Descripción</h2>
+      <p>
+        Un pequeño proyecto personal en el que combino Unreal Engine con música en directo para generar animaciones visuales que reaccionan en tiempo real.
+        La idea es que la animación se sincroniza automáticamente con cualquier pista que elijas, adaptándose al ritmo y la energía del sonido.
+      </p>
+      <p>
+        Además, también existe la opción de renderizar los visuales, sin necesidad de que todo ocurra en tiempo real. Esto permite mayor flexibilidad, dependiendo del flujo de trabajo o del tipo de presentación.
+      </p>
+      <p>
+        Un experimento creativo entre lo interactivo y lo pre-renderizado, que abre muchas puertas para instalaciones, directos o piezas audiovisuales más tradicionales.
+      </p>
+
+      <h3>Técnicas utilizadas</h3>
+      <ul class="tech-list">
+        <li>Modelado Autodesk Maya</li>
+        <li>TouchDesigner: implementación de música y exportación de datos</li>
+        <li>Unreal Engine 5.4: renderizado</li>
+        <li>After Effects: pequeños materiales visuales</li>
+      </ul>
+      
+    
+    <!-- Botón de regreso -->
+    <nav>
+      <a href="../index.html#main" class="back-button">← Volver al portfolio</a>
+    </nav>
+
+  </main>
+ <script>
+  const menu = document.getElementById("menu");
+  const menuButton = document.querySelector('a[href="#menu"]');
+
+  // Mostrar u ocultar el menú al hacer clic en el botón
+  menuButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    menu.classList.toggle("visible");
+  });
+
+  // Ocultar el menú si haces clic fuera del menú y del botón
+  document.addEventListener("click", function (e) {
+    if (
+      menu.classList.contains("visible") &&
+      !menu.contains(e.target) &&
+      !menuButton.contains(e.target)
+    ) {
+      menu.classList.remove("visible");
+    }
+  });
+
+  // Ocultar el menú si haces clic en un enlace dentro del menú
+  menu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      menu.classList.remove("visible");
+    });
+  });
+
+  // Ocultar el menú si pulsas Escape
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      menu.classList.remove("visible");
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eternal Loop – Proyecto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap"
+    rel="stylesheet"
+  />
+   <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+
+  <!-- Menú desplegable lateral derecho -->
+  <a href="#menu" class="menu-btn">☰ Menú</a>
+  
+  <nav id="menu">
+    <div id="menu-overlay"></div>
+  <ul class="links">
+  <li><a href="../index.html#home">Home</a></li>
+<li><a href="../index.html#mas-proyectos">Portfolio</a></li>
+<li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+  <li><a href="../index.html#redes-sociales">Redes</a></li>
+</ul>
+  </nav>
+
+  <!-- Encabezado -->
+  <header id="home">
+    <h1>Fuego realista</h1>
+    <p>
+     Simulación de fuego hecha en Houdini .
+    </p>
+  </header>
+
+<!-- Contenido principal -->
+<div class="container">
+  <div id="ultimos-proyectos" class="video-box">
+    <video
+      controls
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      class="video-preview"
+    >
+      <source src="../videos/fuego.mp4" type="video/mp4" />
+      Tu navegador no puede reproducir este vídeo.
+    </video>
+  </div>
+    <div class="project-description" id="sobre-mi">
+      <h2>Descripción</h2>
+      <p>
+        Simulación en Houdini de un dragón escupiendo fuego sobre un grupo de zombis. Las llamas envuelven a los zombis, generando efectos de incendio realistas y dinámicos, combinando animación y simulación de fluidos para lograr una escena impactante y llena de acción.
+      <h3>Técnicas utilizadas</h3>
+      <ul class="tech-list">
+        <li>Modelado y aniamcion procedural con Houdini</li>
+        <li>Renderizado en Solaris con HDRI dinámico</li>
+        <li>Composición y retoque en After Effects</li>
+      </ul>
+
+      <a href="../index.html#main" class="back-button">← Volver al portfolio</a>
+    </div>
+  </div>
+
+ <script>
+  const menu = document.getElementById("menu");
+  const menuButton = document.querySelector('a[href="#menu"]');
+
+  // Mostrar u ocultar el menú al hacer clic en el botón
+  menuButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    menu.classList.toggle("visible");
+  });
+
+  // Ocultar el menú si haces clic fuera del menú y del botón
+  document.addEventListener("click", function (e) {
+    if (
+      menu.classList.contains("visible") &&
+      !menu.contains(e.target) &&
+      !menuButton.contains(e.target)
+    ) {
+      menu.classList.remove("visible");
+    }
+  });
+
+  // Ocultar el menú si haces clic en un enlace dentro del menú
+  menu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      menu.classList.remove("visible");
+    });
+  });
+
+  // Ocultar el menú si pulsas Escape
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      menu.classList.remove("visible");
+    }
+  });
+</script>
+  
+</body>
+</html>
