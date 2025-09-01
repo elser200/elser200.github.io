@@ -76,31 +76,32 @@
     <header class="align-center">
       <h2>Últimos Proyectos</h2>
     </header>
+
     <div class="video-row">
-      <!-- Primer vídeo desde YouTube con enlace -->
-      <div class="video-box" style="position: relative;">
-        <div class="video-preview" style="aspect-ratio: 16/9; width: 100%; overflow: hidden; border-radius: 16px; position: relative;">
-          <iframe 
-            width="100%" 
-            height="100%" 
-            src="https://www.youtube.com/embed/hswL6stwCH8?autoplay=1&mute=1&loop=1&playlist=hswL6stwCH8&controls=0&modestbranding=1&showinfo=0" 
-            frameborder="0" 
-            allow="autoplay; fullscreen" 
-            allowfullscreen 
-            style="border: none;">
-          </iframe>
-          <a href="html/eternal-loop.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;"></a>
-        </div>
-        <p class="caption">Eternal Loop</p>
-      </div>
-        <!-- Segundo vídeo -->
-  <div class="video-box">
-  <a href="html/luz.html">
-    <img src="videos/prebiew/video_05215.jpg" alt="Visuals Interactive" class="video-preview">
+      <!-- Video destacado 1 (YouTube) -->
+    <div class="video-box">
+  <a href="html/ositos.html">
+    <div class="video-preview">
+      <video muted loop preload="none" poster="videos/prebiew/osito_azucar.osito_alta_sin assemble_00000.jpg">
+        <source src="videos/osito_azucar.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div>
   </a>
-  <p class="caption">Visuals Interactive</p>
+  <p class="caption">Ositos de Azúcar</p>
 </div>
-    
+     
+      <!-- Video destacado 2 (imagen/vídeo local) -->
+      <div class="video-box">
+        <a href="html/luz.html">
+          <div class="video-preview">
+            <img src="videos/prebiew/video_05215.jpg" alt="Visuals Interactive">
+          </div>
+        </a>
+        <p class="caption">Visuals Interactive</p>
+      </div>
+    </div>
+  </div>
 </section>
 
   <!-- Two -->
@@ -154,16 +155,35 @@
   <a href="html/bolas_houdini.html" class="link"><span>Ver video 2</span></a>
 </div>
  <!-- Video 11 -->
-          <div class="video col">
-            <div class="image fit">
-              <video class="preview-video" muted loop preload="none" poster="videos/prebiew/osito_azucar.osito_alta_sin assemble_00000.jpg">
-                <source src="videos/osito_azucar.mp4" type="video/mp4">
-                Tu navegador no soporta video HTML5.
-              </video>
-              <div class="arrow"><div class="icon fa-play"></div></div>
-            </div>
-            <a href="html/ositos.html" class="link"><span>Ver video 3</span></a>
-          </div>          
+<div class="video col" style="position: relative;">
+  <div class="image fit" style="position: relative; aspect-ratio: 16/9; overflow: hidden; border-radius: 16px;">
+    <!-- YouTube embebido -->
+    <iframe 
+      width="100%" 
+      height="100%" 
+      src="https://www.youtube.com/embed/hswL6stwCH8?autoplay=1&mute=1&loop=1&playlist=hswL6stwCH8&controls=0&modestbranding=1&showinfo=0" 
+      frameborder="0" 
+      allow="autoplay; fullscreen" 
+      allowfullscreen 
+      style="border: none;">
+    </iframe>
+
+    <!-- Flecha de play superpuesta -->
+    <div class="arrow" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 20; pointer-events: none;">
+      <div class="icon fa-play"></div>
+    </div>
+
+    <!-- Enlace invisible que cubre todo -->
+    <a 
+      href="html/eternal-loop.html" 
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;">
+    </a>
+  </div>
+
+  <!-- Enlace secundario visible (puedes mantenerlo o quitarlo) -->
+  <a href="html/eternal-loop.html" class="link"><span>Ver video 2</span></a>
+</div>
+         
 
            <!-- Video 12 -->
           <div class="video col">
@@ -271,6 +291,21 @@
             </div>
             <a href="html/brazo.html" class="link"><span>Ver video 9</span></a>
           </div>
+                     <!-- Video 13 -->
+          <div class="video col">
+            <div class="image fit">
+              <video class="preview-video" muted loop preload="none" poster="videos/prebiew/neurona_foto_reproducir0.jpg">
+                <source src="videos/Secuencia 05.mp4" type="video/mp4">
+                Tu navegador no soporta video HTML5.
+              </video>
+              <div class="arrow"><div class="icon fa-play"></div></div>
+            </div>
+            <a href="html/Neuronal.html" class="link"><span>Ver video 9</span></a>
+          </div>
+        </div>
+        
+      </section>
+    </div>
         </div>
         
       </section>
@@ -479,8 +514,43 @@ document.addEventListener('DOMContentLoaded', () => {
         video.currentTime = 0;
       });
     });
+ });
+ </script>
+
+<script>document.addEventListener('DOMContentLoaded', function () {
+  // 1️⃣ Videos HTML5
+  document.querySelectorAll('.preview-video').forEach(container => {
+    const video = container.querySelector('video');
+    if (!video) return;
+    container.addEventListener('mouseenter', () => video.play());
+    container.addEventListener('mouseleave', () => {
+      video.pause();
+      video.currentTime = 0;
+    });
   });
-</script>
+
+  // 2️⃣ YouTube iframes
+  const ytIframes = document.querySelectorAll('.youtube-video'); // ponles esta clase a tus iframes
+  if (ytIframes.length > 0) {
+    let tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+
+    window.onYouTubeIframeAPIReady = function () {
+      ytIframes.forEach(iframe => {
+        let player = new YT.Player(iframe, {
+          events: {
+            'onReady': function(event) {
+              const container = iframe.parentElement;
+              container.addEventListener('mouseenter', () => event.target.playVideo());
+              container.addEventListener('mouseleave', () => event.target.pauseVideo());
+            }
+          }
+        });
+      });
+    };
+  }
+});</script>
 </body>
 <script src="assets/js/scroll-animations.js"></script>
 <script src="assets/js/carrusel.js"></script>

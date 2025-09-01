@@ -52,59 +52,45 @@
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
 }
 
+
 /* primeros 2 videos */
 .video-row {
   display: flex;
-  justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .video-box {
   flex: 1 1 48%;
   max-width: 48%;
-  border-radius: 10px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  will-change: transform;
-  cursor: pointer;
 }
 
 .video-box:hover {
   transform: scale(1.03);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-}
-
-.video-box a {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-.video, .video-box {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  transform-origin: center center;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-.video:hover,
-.video-box:hover {
-  transform: scale(1.05);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
 }
+
 .video-preview {
+  aspect-ratio: 16 / 9;
   width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  border-radius: 10px;
-  transition: opacity 0.3s ease;
+  overflow: hidden;
+  border-radius: 16px;
+  position: relative;
 }
 
-.video-box:hover .video-preview {
-  opacity: 0.85;
+.video-preview iframe,
+.video-preview video,
+.video-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border: none;
 }
 
 .caption {
@@ -214,7 +200,7 @@
 /* Botones CTA mejorados */
 .bio-cta {
   display: flex;
-  gap: var(--space-md);
+  gap: 2rem;
   margin-top: var(--space-md);
   flex-wrap: wrap;
   animation: fadeInUp 1s var(--animation-timing) 0.8s both;
@@ -233,7 +219,7 @@
   background: transparent;
   color: var(--clr-accent);
   transition: transform 0.3s var(--animation-timing), color 0.3s var(--animation-timing);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(226, 0, 0, 0.1);
   text-align: center;
   display: flex;
   align-items: center;
@@ -262,7 +248,7 @@
 
 .bio-cta .button:hover {
   color: white;
-  transform: translateY(-3px) scale(1.03);
+  transform: translateY(-px) scale(1.03);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
